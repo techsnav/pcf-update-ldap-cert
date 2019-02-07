@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# can skip -t flag with ssh if need to
+
 if [[ $DEBUG == true ]]; then
   set -ex
 else
@@ -23,7 +25,7 @@ then
     sshpass -p ${OPSMAN_SSHPASS} scp -o StrictHostKeyChecking=no output-folder/$OUTPUT_FILE_NAME ubuntu@${OPSMAN_HOST}:/tmp/ldap.crt
     sshpass -p ${OPSMAN_SSHPASS} ssh -o StrictHostKeyChecking=no -t ubuntu@${OPSMAN_HOST} "echo ${OPSMAN_SSHPASS} | sudo -u tempest-web -S cp -p /home/tempest-web/uaa/jdk/jre/lib/security/cacerts /home/tempest-web/uaa/jdk/jre/lib/security/cacerts.orig"
     sshpass -p ${OPSMAN_SSHPASS} ssh -o StrictHostKeyChecking=no -t ubuntu@${OPSMAN_HOST} "echo ${OPSMAN_SSHPASS} | sudo -u tempest-web -S /home/tempest-web/uaa/jdk/bin/keytool -importcert -noprompt -file /tmp/ldap.crt -keystore /home/tempest-web/uaa/jdk/jre/lib/security/cacerts -storepass changeit"
-    sshpass -p ${OPSMAN_SSHPASS} ssh -o StrictHostKeyChecking=no -t ubuntu@${OPSMAN_HOST} "echo ${OPSMAN_SSHPASS} |sudo -S service tempest-web restart"
+    sshpass -p ${OPSMAN_SSHPASS} ssh -o StrictHostKeyChecking=no -t ubuntu@${OPSMAN_HOST} "echo ${OPSMAN_SSHPASS} | sudo -S service tempest-web restart"
     echo "Waiting for 30 seconds..."
     sleep 30
   fi
