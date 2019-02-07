@@ -60,7 +60,7 @@ resources:
       cert: |
         -----BEGIN CERTIFICATE-----
         YOUR CERT
-		HERE
+        HERE
         -----END CERTIFICATE-----
 
 - name: platform-buildbox
@@ -74,9 +74,9 @@ resources:
       cert: |
         -----BEGIN CERTIFICATE-----
         YOUR CERT
-		HERE
+        HERE
         -----END CERTIFICATE-----
-		
+
 - name: send-email
   type: email
   source:
