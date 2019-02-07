@@ -188,7 +188,7 @@ jobs:
     params:
       subject_text: "Build failed: ${BUILD_PIPELINE_NAME}/${BUILD_JOB_NAME}/${BUILD_NAME}"
       body_text: "Build failed: ${ATC_EXTERNAL_URL}/teams/sandbox/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}"
-	  
+
 - name: apply-changes
   plan:
   - aggregate:
