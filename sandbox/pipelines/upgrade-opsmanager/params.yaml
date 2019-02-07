@@ -1,0 +1,63 @@
+# Token used to download the product file from Pivotal Network. Find this
+# on your Pivotal Network profile page:
+# https://network.pivotal.io/users/dashboard/edit-profile
+pivnet_token: ((pivnet_token))
+
+# The token used to download the repos from GitHub for the pipelines
+git_url: https://private.example.com/pcfplatform/your-company # [R] Pipelines github repo
+git_branch: master
+git_username: ((git_username)) # [R] Your github username
+git_token: ((git_token))
+apply_changes: true
+state_file: sandbox/sandbox_state.yml
+
+debug: false
+
+opsman_product_version: ^2\.4\..*$
+
+ci_username: ((git_username))                  # [R] Username used to push to your gist_url
+ci_email_address: ((git_email))        # [R] Email used to push to your gist_url
+
+ops_manager_settings: |
+  opsman-configuration:
+    vsphere:
+      vcenter:
+        url: ((vcenter_host))
+        username: ((vcenter_usr))
+        password: ((vcenter_pwd))
+        datastore: ((datastore_name))
+        datacenter: ((datacenter_name))
+        resource_pool: ((resource_pool_path))
+        folder: ((vm_folder))
+        insecure: 1
+      disk_type: thick                            # example: thin|thick
+      private_ip: ((ops_mgr_ip))
+      dns: ((dns_ips))
+      ntp: ((ntp_ips))
+      ssh_password: ((ops_mgr_ssh_pwd))
+      hostname: ((ops_mgr_host))
+      network: ((network))                                    # vcenter network to deploy to
+      netmask: ((netmask))
+      gateway: ((gw_ip))
+      vm_name: (opsman_vm_name))
+
+ops_manager_env: |
+  target: https://((ops_mgr_host))
+  skip-ssl-validation: true
+  username: ((ops_mgr_usr))
+  password: ((ops_mgr_pwd))
+  decryption-passphrase: ((ops_mgr_decryption_pwd))
+
+opsman_output_file: opsman.yml
+
+apply_changes_config: |
+  deploy_products: ["p-bosh"]
+
+ldap_ssl_cert: |
+  -----BEGIN CERTIFICATE-----
+  YOUR LDAP
+  CERT
+  HERE
+  -----END CERTIFICATE-----
+
+cert_file: certfile.yml
